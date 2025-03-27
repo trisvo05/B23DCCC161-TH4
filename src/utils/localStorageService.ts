@@ -42,36 +42,30 @@ interface SinhVien {
     return data ? JSON.parse(data) : [];
   };
   
-  const addSinhVien = (sinhVien: SinhVien) => {
-    const sinhViens = getFromLocalStorage(LOCAL_STORAGE_KEYS.SINH_VIEN);
-    sinhViens.push(sinhVien);
-    saveToLocalStorage(LOCAL_STORAGE_KEYS.SINH_VIEN, sinhViens);
+  const addItem = (key: string, item: any) => {
+    const items = getFromLocalStorage(key);
+    items.push(item);
+    saveToLocalStorage(key, items);
   };
   
-  const addTotNghiep = (totNghiep: TotNghiep) => {
-    const totNghieps = getFromLocalStorage(LOCAL_STORAGE_KEYS.TOT_NGHIEP);
-    totNghieps.push(totNghiep);
-    saveToLocalStorage(LOCAL_STORAGE_KEYS.TOT_NGHIEP, totNghieps);
+  const updateItem = (key: string, idField: string, id: string, newData: any) => {
+    const items = getFromLocalStorage(key);
+    const index = items.findIndex((item: any) => item[idField] === id);
+    if (index !== -1) {
+      items[index] = { ...items[index], ...newData };
+      saveToLocalStorage(key, items);
+    }
   };
   
-  const addPhuLucVanBang = (phuLuc: PhuLucVanBang) => {
-    const phuLucs = getFromLocalStorage(LOCAL_STORAGE_KEYS.PHU_LUC_VAN_BANG);
-    phuLucs.push(phuLuc);
-    saveToLocalStorage(LOCAL_STORAGE_KEYS.PHU_LUC_VAN_BANG, phuLucs);
-  };
-  
-  const addVanBang = (vanBang: VanBang) => {
-    const vanBangs = getFromLocalStorage(LOCAL_STORAGE_KEYS.VAN_BANG);
-    vanBangs.push(vanBang);
-    saveToLocalStorage(LOCAL_STORAGE_KEYS.VAN_BANG, vanBangs);
+  const deleteItem = (key: string, idField: string, id: string) => {
+    const items = getFromLocalStorage(key).filter((item: any) => item[idField] !== id);
+    saveToLocalStorage(key, items);
   };
   
   export {
-    addSinhVien,
-    addTotNghiep,
-    addPhuLucVanBang,
-    addVanBang,
+    addItem,
+    updateItem,
+    deleteItem,
     getFromLocalStorage,
     LOCAL_STORAGE_KEYS,
   };
-  
