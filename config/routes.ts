@@ -52,6 +52,44 @@
 	// },
 
 	{
+		path: '/van-bang',
+		name: 'Văn bằng',
+		icon: 'FileTextOutlined',
+		routes: [
+			{
+				path: '/van-bang/tra-cuu',
+				name: 'Tra cứu văn bằng',
+			},
+
+			{
+				path: '/van-bang/quan-ly',
+				name: 'Quản lý',
+				routes: [
+					{
+						path: '/van-bang/quan-ly/so-vb',
+						name: 'Quản lý số văn bằng',
+					},
+
+					{
+						path: '/van-bang/quan-ly/quyet-dinh-tn',
+						name: 'Quyết định tốt nghiệp',
+					},
+
+					{
+						path: '/van-bang/quan-ly/bieu-mau-phu-luc-vb',
+						name: 'Cấu hình biểu mẫu phụ lục văn bằng',
+					},
+
+					{
+						path: '/van-bang/quan-ly/thong-tin',
+						name: 'Thông tin văn bằng',
+					},
+				],
+			},
+		],
+	},
+
+	{
 		path: '/notification',
 		routes: [
 			{
